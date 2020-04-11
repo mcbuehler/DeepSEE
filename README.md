@@ -15,8 +15,8 @@ This is the official repository of this paper:
 
 ## Downloads
 * Paper on [arxiv](https://arxiv.org/abs/2004.04433) ([PDF](https://arxiv.org/pdf/2004.04433)) (file size had to be reduced to arxiv constraints)
-* Main paper in full resolution ([9 MB])(https://deepseeresources.s3.us-east-2.amazonaws.com/DeepSEE_main_full-resolution.pdf)
-* Supplementary material in full resolution ([14 MB])(https://deepseeresources.s3.us-east-2.amazonaws.com/DeepSEE_supp_full-resolution.pdf)
+* Main paper in full resolution ([9 MB](https://deepseeresources.s3.us-east-2.amazonaws.com/DeepSEE_main_full-resolution.pdf))
+* Supplementary material in full resolution ([14 MB](https://deepseeresources.s3.us-east-2.amazonaws.com/DeepSEE_supp_full-resolution.pdf))
 
 ## [License](https://raw.githubusercontent.com/nvlabs/SPADE/master/LICENSE.md)
 
