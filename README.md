@@ -3,7 +3,8 @@
 
 ## DeepSEE: Deep Disentangled Semantic Explorative Extreme Super-Resolution
 <p align="left"><img width="99%" src="docs/assets/fig_manipulations_ref_small.jpg" /></p>
-<p align="left"><img width="256px" src="docs/assets/fig_manipulations_semantics.gif" /><img width="256px" src="docs/assets/fig_manipulations_semantics2.gif" /></p>
+<p align="left"><img width="256px" src="docs/assets/fig_manipulations_semantics.gif" /><div width="5px"></div><img width="256px" src="docs/assets/fig_manipulations_semantics2.gif" /></p><div width="5px"></div><img width="256px" src="docs/assets/fig_manipulations_semantics3.gif" /></p>
+
 
 This is the official repository of this paper:
 
