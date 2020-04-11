@@ -18,12 +18,11 @@ This is the official repository of this paper:
 * Main paper in full resolution ([9 MB](https://deepseeresources.s3.us-east-2.amazonaws.com/DeepSEE_main_full-resolution.pdf))
 * Supplementary material in full resolution ([14 MB](https://deepseeresources.s3.us-east-2.amazonaws.com/DeepSEE_supp_full-resolution.pdf))
 
-## [License](https://raw.githubusercontent.com/nvlabs/SPADE/master/LICENSE.md)
+## License
+Copyright belongs to the authors.
+All rights reserved. Licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) (**Attribution-NonCommercial-ShareAlike 4.0 International**)
+For the SPADE part: Copyright (C) 2019 NVIDIA Corporation.
 
-Copyright (C) 2019 NVIDIA Corporation.
-
-All rights reserved.
-Licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) (**Attribution-NonCommercial-ShareAlike 4.0 International**)
 
 ## Installation
 We will release code and pre-trained models soon. Make sure to star our repository to stay tuned.
