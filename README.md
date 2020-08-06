@@ -111,3 +111,10 @@ Copyright belongs to the authors.
 All rights reserved. Licensed under the [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) (**Attribution-NonCommercial-ShareAlike 4.0 International**)
 
 For the SPADE part: Copyright (C) 2019 NVIDIA Corporation.
+
+
+## Acknowledgments
+We built on top of the code from [SPADE](https://github.com/nvlabs/spade).
+Thanks to Jiayuan Mao for his [Synchronized Batch Normalization code](https://github.com/vacancy/Synchronized-BatchNorm-PyTorch),
+mseitzer for the [FID implementation in pytorch](https://github.com/mseitzer/pytorch-fid.git) and the authors of [PerceptualSimilarity](https://github.com/richzhang/PerceptualSimilarity).
+
