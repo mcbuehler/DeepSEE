@@ -5,18 +5,14 @@ results/
 *.zip
 *.pkl
 *.pyc
-sync_batchnorm
-Synchronized-BatchNorm-PyTorch
 
 logs
 debug.py
 scripts
 stats
 config/*.json
-PerceptualSimilarity
 wandb
 times-new-roman
 pytorch_checkpoint
-pytorch_fid
 zipper
 unit_test
