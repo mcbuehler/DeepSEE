@@ -32,7 +32,7 @@ pip install -r requirements.txt
 
 ### CelebAMask-HQ
 
-1. **Obtain Images**: Download the dataset `CelebAMask-HQ.zip` from the authors
+1. **Obtain images**: Download the dataset `CelebAMask-HQ.zip` from the authors
  [GitHub repository](https://github.com/switchablenorms/CelebAMask-HQ) and extract the contents.
 
 For the <i>guided</i> model, you also need the
@@ -42,8 +42,10 @@ For the <i>guided</i> model, you also need the
   As an alternative, you can also recompute them via   
   `python data/celebamaskhq_compute_identities_file.py`.  
   You find the required mapping files in the file `CelebAMask-HQ.zip`.
+  
 2. **Obtain the semantic masks** predicted from downscaled images. You have two options:
-a) Download from [here](https://deepseeresources.s3.us-east-2.amazonaws.com/CelebAMask-HQ.zip) or b) predict them yourself. 
+a) Download from [here](https://deepseeresources.s3.us-east-2.amazonaws.com/CelebAMask-HQ.zip) or b) predict them yourself.
+ 
 3. **Split the dataset** into train / val / test. 
 In `data/celebamaskhq_partition.py`, you can update the paths for in- and outputs. 
 Then, run
@@ -51,7 +53,7 @@ Then, run
     ```python data/celebamaskhq_partition.py```
 
 ### CelebA
-1. **Obtain Images**: On the [author's website](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), click the link `Align&Cropped Images`. It will open a Google Drive, where you can download the images under "CelebA" -> "Img" -> "img_align_celeba.zip".
+1. **Obtain images**: On the [author's website](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), click the link `Align&Cropped Images`. It will open a Google Drive, where you can download the images under "CelebA" -> "Img" -> "img_align_celeba.zip".
 For the <i>guided</i> model, you also need the identity annotations. You can download these in the same Google Drive under "CelebA" -> "Anno" -> "identity_CelebA.txt".
 2. **Obtain the semantic masks** predicted from downscaled images. You have two options:
 a) Download from [here](https://deepseeresources.s3.us-east-2.amazonaws.com/CelebA.zip) or b) predict them yourself. 
