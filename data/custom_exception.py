@@ -1,0 +1,2 @@
+class SkipSampleException(Exception):
+    pass

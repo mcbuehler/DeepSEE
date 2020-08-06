@@ -1,0 +1,14 @@
+wrapt==1.12.0
+torch>=1.0.0
+torchvision
+dominate>=2.3.1
+dill
+pandas>=0.24.2
+scikit-image>=0.15.0
+tensorboard==1.14
+tensorflow==1.14
+tqdm==4.40.0
+facenet-pytorch==2.1.1
+IPython==7.9.0
+opencv-python==4.1.1.26
+GPUtil==1.4.0
