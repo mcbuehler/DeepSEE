@@ -14,7 +14,7 @@ class TrainerManager(BaseManager):
         super().__init__(opt, create_model=True)
         assert opt.isTrain
         self.optimizer_G, self.optimizer_D = \
-                self.sr_model.create_optimizers(opt)
+                self.sr_model_on_one_gpu.create_optimizers(opt)
         self.old_lr = opt.lr
 
         self.generated = None
