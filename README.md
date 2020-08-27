@@ -74,6 +74,8 @@ We list the training commands for the <i>independent</i> and the <i>guided</i> m
 sh ./scripts/train/train_8x_256x256.sh
 ```
 
+If you interrupt training and want to restart, make sure to use the flag `--continue_train`. Otherwise, your previous checkpoints might be overwritten.
+
 **Note when Training Models for 32x Upscaling** 
 
 Models for extreme upscaling require significant GPU memory. You will have to use 2 V100 GPUs with 16GB memory each (or similar). 
