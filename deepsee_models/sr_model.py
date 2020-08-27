@@ -70,10 +70,9 @@ class SRModel(torch.nn.Module):
         image_lr = data.get("image_lr", None)
         image_hr = data.get("image_hr", None)  # Only required if training
         # Only required if netE is "fullstyle"
-        guiding_image = data.get("image_guiding", None)
-        guiding_label = data.get("label_guiding", None)
+        guiding_image = data.get("guiding_image", None)
+        guiding_label = data.get("guiding_label", None)
         encoded_style = data.get("encoded_style", None)
-
         if mode == 'generator':
             g_loss, generated = self.compute_generator_loss(
                 input_semantics, image_hr, image_lr, guiding_image, guiding_label)
@@ -91,7 +90,7 @@ class SRModel(torch.nn.Module):
             data = util.filter_none(data)
             return data
         elif mode == 'encode_only':
-            encoded_style, encoder_activations, mu, logvar = self.encode_style(
+            encoded_style, encoder_activations = self.encode_style(
                 downscaled_image=image_lr,
                 input_semantics=input_semantics, full_image=image_hr,
                 no_noise=True, guiding_image=guiding_image,
@@ -134,7 +133,7 @@ class SRModel(torch.nn.Module):
                 n = self.opt.n_interpolation  # TODO: rename to something else
                 consistent_regions = np.array([4, 6, 8, 11])  # TODO: store in dataset class
 
-                encoded_style, _, _, _ = self.encode_style(downscaled_image=image_lr,
+                encoded_style, _ = self.encode_style(downscaled_image=image_lr,
                                                               input_semantics=input_semantics,
                                                               full_image=image_hr,
                                                               no_noise=True, guiding_image=guiding_image, guiding_label=guiding_label)
@@ -223,7 +222,7 @@ class SRModel(torch.nn.Module):
                 if "style_matrix" in data:
                     encoded_style = data["style_matrix"]
                 else:
-                    encoded_style, _, _, _ = self.encode_style(downscaled_image=image_lr,
+                    encoded_style, _ = self.encode_style(downscaled_image=image_lr,
                                                            input_semantics=input_semantics, full_image=image_hr,
                                                            no_noise=True, guiding_image=guiding_image, guiding_label=guiding_label)
                 n = self.opt.n_interpolation
@@ -304,7 +303,7 @@ class SRModel(torch.nn.Module):
                 return out
         elif mode == "inference_particular_combined":
             with torch.no_grad():
-                encoded_style_mini, _, _, _ = self.encode_style(input_semantics=input_semantics,
+                encoded_style_mini, _ = self.encode_style(input_semantics=input_semantics,
                                                                 downscaled_image=image_lr,
                                                                   no_noise=True, encode_full=False,
                                                                   guiding_image=None,
@@ -355,13 +354,12 @@ class SRModel(torch.nn.Module):
             with torch.no_grad():
 
                 region_idx = self.opt.region_idx if self.opt.region_idx else list(range(input_semantics.size(1)))
-                print(region_idx)
-                encoded_style_full, _, _, _ = self.encode_style(input_semantics=None,
+                encoded_style_full, _ = self.encode_style(input_semantics=None,
                                                                 downscaled_image=None,
                                                                   no_noise=True, encode_full=True,
                                                                   guiding_image=image_hr,
                                                                   guiding_label=input_semantics)
-                fake_image_original, _, _, _ = self.generate_fake(input_semantics=input_semantics,
+                fake_image_original, _, _ = self.generate_fake(input_semantics=input_semantics,
                                                              image_downsized=image_lr,
                                                              encoded_style=encoded_style_full)
 
@@ -371,13 +369,13 @@ class SRModel(torch.nn.Module):
                                    ("image_full", image_hr)])
 
                 if self.opt.guiding_style_image:
-                    guiding_style, _, _, _ = self.encode_style(input_semantics=None,
+                    guiding_style, _ = self.encode_style(input_semantics=None,
                                                                  downscaled_image=None,
                                                                  no_noise=True, encode_full=True,
                                                                  guiding_image=guiding_image,
                                                                  guiding_label=guiding_label)
                     # The fake image produced with a guiding style
-                    fake_image_guiding, _, _, _ = self.generate_fake(input_semantics=input_semantics,
+                    fake_image_guiding, _, _ = self.generate_fake(input_semantics=input_semantics,
                                                                       image_downsized=image_lr,
                                                                       encoded_style=guiding_style)
 
@@ -385,30 +383,13 @@ class SRModel(torch.nn.Module):
                     out['guiding_image_id'] = data['guiding_image_id']
                     out['guiding_image'] = data['guiding_image']
                     out['guiding_input_label'] = data['guiding_label']
-
-                if guiding_image2 is not None:
-                    print('manipulating...')
-                    encoded_style_manipulate, _, _, _ = self.encode_style(downscaled_image=None,
-                                                                  no_noise=True, encode_full=True,
-                                                                  guiding_image=guiding_image2,
-                                                                  guiding_label=guiding_label2)
-                    encoded_style_manipulate *= self.opt.manipulate_scale
-                # encoded_style_guided = encoded_style_guided * 15
-                    encoded_style_modified = guiding_style.detach().clone()
-                    encoded_style_modified[0, region_idx] = encoded_style_manipulate[0, region_idx]
-                    fake_image_modified, _, _, _ = self.generate_fake(input_semantics=input_semantics,
-                                                             image_downsized=image_lr,
-                                                             encoded_style=encoded_style_modified)
-                    out['fake_image"manipulated'] = fake_image_modified
-                    out['guiding_image_manipulate'] = guiding_image2
-                    out['guiding_input_label_manipulate'] = guiding_label2
                 return out
         elif mode == "inference_reference":
             with torch.no_grad():
                 # encoded_style_mini, _, _, _ = self.encode_style(downscaled_image=image_downsized,
                 #                                            input_semantics=input_semantics, full_image=None,
                 #                                            no_noise=True)
-                encoded_style_full, _, _, _ = self.encode_style(downscaled_image=None,
+                encoded_style_full, _ = self.encode_style(downscaled_image=None,
                                                            input_semantics=input_semantics, full_image=image_hr,
                                                            no_noise=True, encode_full=True, guiding_image=guiding_image, guiding_label=guiding_label)
                 region_idx = self.opt.region_idx if self.opt.region_idx else list(range(input_semantics.size(1)))
@@ -441,7 +422,7 @@ class SRModel(torch.nn.Module):
                 # encoded_style_mini, _, _, _ = self.encode_style(downscaled_image=image_downsized,
                 #                                            input_semantics=input_semantics, full_image=None,
                 #                                            no_noise=True)
-                encoded_style_full, _, _, _ = self.encode_style(downscaled_image=None,
+                encoded_style_full, _ = self.encode_style(downscaled_image=None,
                                                            input_semantics=input_semantics, full_image=image_hr,
                                                            no_noise=True, encode_full=True)
                 region_idx = self.opt.region_idx if self.opt.region_idx else list(range(input_semantics.size(1)))
@@ -597,7 +578,7 @@ class SRModel(torch.nn.Module):
         gpu_info("Generate fake start", self.opt)
         encoder_activations = None
         if encoded_style is None and "style" in self.opt.netE:
-            encoded_style, encoder_activations, mu, logvar = self.encode_style(downscaled_image=image_downsized, input_semantics=input_semantics, full_image=full_image, no_noise=no_noise, guiding_image=guiding_image, guiding_label=guiding_label, encode_full=self.opt.full_style_image)
+            encoded_style, encoder_activations = self.encode_style(downscaled_image=image_downsized, input_semantics=input_semantics, full_image=full_image, no_noise=no_noise, guiding_image=guiding_image, guiding_label=guiding_label, encode_full=self.opt.full_style_image)
         gpu_info("Generate fake before SR", self.opt)
 
         fake_image = self.netSR(image_downsized, seg=input_semantics, z=encoded_style)
@@ -662,7 +643,6 @@ class SRModel(torch.nn.Module):
         return style_image, style_semantics, mode
 
     def encode_style(self, downscaled_image=None, input_semantics=None, full_image=None, encode_full=False, no_noise=None, guiding_image=None, guiding_label=None):
-        activations, mu, logvar = None, None, None
         style_image, style_semantics, mode = self.get_encoder_inputs(downscaled_image=downscaled_image, input_semantics=input_semantics, full_image=full_image, encode_full=encode_full, guiding_image=guiding_image, guiding_label=guiding_label)
 
         if self.model_variant == "guided":
@@ -678,7 +658,7 @@ class SRModel(torch.nn.Module):
                                                    no_noise=no_noise)
         else:
             raise NotImplementedError()
-        return encoded_style, activations, mu, logvar
+        return encoded_style, activations
 
     # Given fake and real image, return the prediction of discriminator
     # for each fake and real image.
