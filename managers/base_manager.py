@@ -42,8 +42,8 @@ class BaseManager:
     def preprocess_gpu(self, data):
         # moves to GPU, if needed
         if self.use_gpu():
-            for k in data:
-                if "label" in k or "semantics" in k or "image" in k:
+            for k, v in data.items():
+                if hasattr(v, "cuda"):
                     data[k] = data[k].cuda()
         return data
 
