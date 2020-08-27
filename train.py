@@ -23,7 +23,7 @@ def run(opt):
     dataloader = data.create_dataloader(opt)
 
     trainer = TrainerManager(opt)
-    inference_manager = InferenceManager(num_samples=opt.num_evaluation_samples, opt=opt, cuda=len(opt.gpu_ids) > 0, write_details=False, save_images=False, use_metrics=False)
+    inference_manager = InferenceManager(num_samples=opt.num_evaluation_samples, opt=opt, cuda=len(opt.gpu_ids) > 0, write_details=False, save_images=False)
 
     # For logging and visualizations
     iter_counter = IterationCounter(opt, len(dataloader))

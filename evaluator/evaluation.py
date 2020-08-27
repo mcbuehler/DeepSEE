@@ -230,7 +230,7 @@ def evaluate_validation_set(inference_manager, model, opt):
     """
     dataloader_val = get_validation_dataloader(opt)
     print("Evaluating on {} validation samples...".format(
-        inference_manager.num_evaluation_samples))
+        inference_manager.num_samples))
     try:
         result = inference_manager.run(model, dataloader_val)
     except StopIteration:
