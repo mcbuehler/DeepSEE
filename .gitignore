@@ -8,7 +8,6 @@ results/
 
 logs
 debug.py
-scripts
 stats
 config/*.json
 wandb
