@@ -7,18 +7,17 @@
 This is the official repository of this paper:
 
 > **DeepSEE: Deep Disentangled Semantic Explorative Extreme Super-Resolution**<br>
-> [Marcel Bühler](http://www.linkedin.com/in/mcbuehler/),  [Andrés Romero](https://ee.ethz.ch/the-department/people-a-z/person-detail.MjQ5ODc2.TGlzdC8zMjc5LC0xNjUwNTg5ODIw.html), and [Radu Timofte](https://people.ee.ethz.ch/~timofter/).<br>
+> [Marcel Bühler](http://www.mcbuehler.ch),  [Andrés Romero](https://ee.ethz.ch/the-department/people-a-z/person-detail.MjQ5ODc2.TGlzdC8zMjc5LC0xNjUwNTg5ODIw.html), and [Radu Timofte](https://people.ee.ethz.ch/~timofter/).<br>
 > [Computer Vision Lab](https://vision.ee.ethz.ch/), [ETH Zurich](https://ethz.ch), Switzerland <br>
-> **Abstract:** *Super-resolution (SR) is by definition ill-posed. There are infinitely many plausible high-resolution variants for a given low-resolution natural image. This is why example-based SR methods typically study upscaling factors of 4× to 8×. Most of the current literature aims at a single deterministic solution of either high reconstruction fidelity or photo-realistic perceptual quality. In this work, we propose a novel framework for facial super-resolution, DeepSEE, for Deep disentangled Semantic Explorative Extreme super-resolution. To the best of our knowledge, DeepSEE is the first method to leverage semantic maps for explorative super-resolution. In particular, it provides control of the semantic regions, their disentangled appearance and it allows a broad range of image manipulations. We validate DeepSEE on faces, for up to 32× magnification and exploration of the space of super-resolution.*
+> **Abstract:** *Super-resolution (SR) is by definition ill-posed. There are infinitely many plausible high-resolution variants for a given low-resolution natural image. Most of the current literature aims at a single deterministic solution of either high reconstruction fidelity or photo-realistic perceptual quality. In this work, we propose an explorative facial super-resolution framework, DeepSEE, for Deep disentangled Semantic Explorative Extreme super-resolution. To the best of our knowledge, DeepSEE is the first method to leverage semantic maps for explorative super-resolution. In particular, it provides control of the semantic regions, their disentangled appearance and it allows a broad range of image manipulations. We validate DeepSEE on faces, for up to 32x magnification and exploration of the space of super-resolution.*
 
 ## Updates
 *08/06/2020*: **Training code released**. We will also release inference code and pre-trained models. Make sure to star our repository to stay tuned.
 
 ## Downloads
-* Paper on [arxiv](https://arxiv.org/abs/2004.04433) ([PDF](https://arxiv.org/pdf/2004.04433)) (file size had to be reduced to arxiv constraints)
-* Main paper in full resolution ([9 MB](https://deepseeresources.s3.us-east-2.amazonaws.com/DeepSEE_main_full-resolution.pdf))
-* Supplementary material in full resolution ([14 MB](https://deepseeresources.s3.us-east-2.amazonaws.com/DeepSEE_supp_full-resolution.pdf))
+Please download our paper and supplementary material from our [Project Page](https://mcbuehler.github.io/DeepSEE/).
 
+Pre-trained models are coming soon.
 ## Installation
 
 ```bash
@@ -97,13 +96,11 @@ This is already pre-set in `scripts/train/train_32x_512x512.sh`.
 
 ## Citation
 ```
-@misc{bhler2020deepsee,
+@InProceedings{bhler2020deepsee,
     title={DeepSEE: Deep Disentangled Semantic Explorative Extreme Super-Resolution},
     author={Marcel Christoph Bühler and Andrés Romero and Radu Timofte},
     year={2020},
-    eprint={2004.04433},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+    booktitle = {The 15th Asian Conference on Computer Vision (ACCV)},
 }
 ```
 
