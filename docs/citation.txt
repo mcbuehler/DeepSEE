@@ -1,8 +1,6 @@
-@misc{bhler2020deepsee,
+@InProceedings{bhler2020deepsee,
     title={DeepSEE: Deep Disentangled Semantic Explorative Extreme Super-Resolution},
     author={Marcel Christoph Bühler and Andrés Romero and Radu Timofte},
     year={2020},
-    eprint={2004.04433},
-    archivePrefix={arXiv},
-    primaryClass={cs.CV}
+    booktitle = {The 15th Asian Conference on Computer Vision (ACCV)},
 }
