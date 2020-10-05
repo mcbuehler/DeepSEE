@@ -95,9 +95,10 @@ This is already pre-set in `scripts/train/train_32x_512x512.sh`.
 - `util/`: Code for logging, visualizations and more.
 
 ## Citation
-Marcel Christoph Bühler, Andrés Romero, and Radu Timofte. <br>
-Deepsee: Deep disentangled semantic explorative extreme super-resolution. <br>
+> Marcel Christoph Bühler, Andrés Romero, and Radu Timofte.<br> 
+Deepsee: Deep disentangled semantic explorative extreme super-resolution.<br> 
 In The 15th Asian Conference on Computer Vision (ACCV), 2020. 
+
 
 [Bibtex](docs/citation.txt)
 
