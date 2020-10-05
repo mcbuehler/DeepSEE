@@ -95,14 +95,11 @@ This is already pre-set in `scripts/train/train_32x_512x512.sh`.
 - `util/`: Code for logging, visualizations and more.
 
 ## Citation
-```
-@InProceedings{bhler2020deepsee,
-    title={DeepSEE: Deep Disentangled Semantic Explorative Extreme Super-Resolution},
-    author={Marcel Christoph Bühler and Andrés Romero and Radu Timofte},
-    year={2020},
-    booktitle = {The 15th Asian Conference on Computer Vision (ACCV)},
-}
-```
+Marcel Christoph Bühler, Andrés Romero, and Radu Timofte. <br>
+Deepsee: Deep disentangled semantic explorative extreme super-resolution. <br>
+In The 15th Asian Conference on Computer Vision (ACCV), 2020. 
+
+[Bibtex](docs/citation.txt)
 
 
 ## License
