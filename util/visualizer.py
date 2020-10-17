@@ -12,7 +12,6 @@ from collections import OrderedDict
 import cv2
 import numpy as np
 import torch
-from torch.utils.tensorboard import SummaryWriter
 
 from util import ownhtml
 from util.util import save_image
@@ -24,25 +23,12 @@ except ImportError:
     from io import BytesIO  # Python 3.x
 
 
-# import tensorflow as tf
-# tf.Summary = tf.compat.v1.Summary
-
-
 class Visualizer():
     def __init__(self, opt):
         self.opt = opt
-        self.tf_log = opt.isTrain and opt.tf_log
         self.use_html = opt.isTrain and not opt.no_html
         self.win_size = opt.display_winsize
         self.name = opt.name
-        if self.tf_log:
-            import tensorflow as tf
-
-            self.tf = tf
-            self.log_dir = os.path.join(opt.checkpoints_dir, opt.name, 'logs')
-            # self.writer = tf.train.SummaryWriter(self.log_dir)
-            # self.writer = FileWriter(self.log_dir)
-            self.writer = SummaryWriter(self.log_dir)
 
         if self.use_html:
             self.web_dir = os.path.join(opt.checkpoints_dir, opt.name, 'web')
@@ -61,18 +47,8 @@ class Visualizer():
     def display_current_results(self, visuals, epoch, step, logs={},
                                 info=None):
         for key, val in logs.items():
-            if key.startswith('hist') and self.tf_log:
-                key = key[5:]  # Do not write hist in tensorboard
-                try:
-                    self.writer.add_histogram(key, val)
-                except ValueError as e:
-                    print(traceback.format_exc())
-                    print("Value Error when creating histograms.")
-            if key.startswith('scalar') and self.tf_log:
-                key = key[7:]
-                self.writer.add_scalar(key, val)
             if key.startswith('image'):
-                key = key[6:]  # Do not write hist in tensorboard
+                key = key[6:]
                 visuals[key] = val
                 if not "last" in key:
                     visuals.move_to_end(key,
@@ -138,19 +114,6 @@ class Visualizer():
                     webpage.add_images(ims[num:], txts[num:], links[num:],
                                        height=self.win_size, info=info)
             webpage.save()
-
-    # errors: dictionary of error labels and values
-    def plot_current_errors(self, errors, step, split=""):
-        if self.tf_log:
-            for tag, value in errors.items():
-                if isinstance(value, torch.Tensor):
-                    value = value.mean().float()
-                elif "numpy" in str(type(value)):
-                    value = np.mean(value.astype(np.float))
-                self.writer.add_scalar(split + tag, value, global_step=step)
-                # summary = self.tf.compat.v1.Summary(value=[self.tf.compat.v1.Summary(tag=tag, simple_value=value)])
-                # summary = self.tf.summary.Summary(value=[self.tf.Summary.Value(tag=tag, simple_value=value)])
-                # self.writer.add_summary(summary, step)
 
     # errors: same format as |errors| of plotCurrentErrors
     def print_current_errors(self, epoch, i, errors, t, total_time_so_far,

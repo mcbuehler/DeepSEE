@@ -58,8 +58,6 @@ def run(opt):
                                                     iter_counter.time_per_iter,
                                                     iter_counter.total_time_so_far,
                                                     iter_counter.total_steps_so_far)
-                    visualizer.plot_current_errors(losses,
-                                                   iter_counter.total_steps_so_far)
 
                 if iter_counter.needs_displaying():
                     logs = trainer.get_logs()
@@ -99,9 +97,6 @@ def run(opt):
                                                    num_samples=opt.num_evaluation_samples)
                     info += os.linesep + iter_counter.record_metrics(result_train,
                                                                      split="train")
-                    visualizer.plot_current_errors(result_train,
-                                                   iter_counter.total_steps_so_far,
-                                                   split="train/")
 
                     if opt.evaluate_val_set:
                         # Evaluate on validation set
@@ -113,9 +108,6 @@ def run(opt):
                             num_samples=opt.num_evaluation_samples)
                         info += os.linesep + iter_counter.record_metrics(
                             result_val, split="validation")
-                        visualizer.plot_current_errors(result_val,
-                                                       iter_counter.total_steps_so_far,
-                                                       split="validation/")
 
             trainer.update_learning_rate(epoch)
             iter_counter.record_epoch_end()

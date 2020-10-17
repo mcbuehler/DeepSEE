@@ -5,8 +5,6 @@ dominate>=2.3.1
 dill
 pandas>=0.24.2
 scikit-image>=0.15.0
-tensorboard==1.14
-tensorflow==1.14
 tqdm==4.40.0
 facenet-pytorch==2.1.1
 IPython==7.9.0
