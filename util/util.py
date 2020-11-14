@@ -308,7 +308,6 @@ class Colorize(object):
             color_image[0][mask] = self.cmap[label][0]
             color_image[1][mask] = self.cmap[label][1]
             color_image[2][mask] = self.cmap[label][2]
-
         return color_image
 
 
@@ -430,3 +429,10 @@ def filter_none(ordered_dict):
     out = OrderedDict(
         [(k, v) for k, v in ordered_dict.items() if v is not None])
     return out
+
+
+class ObjectDict(dict):
+    def __init__(self, d):
+        super().__init__()
+        for k, v in d.items():
+            setattr(self, k, v)
