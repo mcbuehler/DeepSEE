@@ -29,11 +29,6 @@ def run(opt):
     iter_counter = IterationCounter(opt, len(dataloader))
     visualizer = Visualizer(opt)
 
-    if not opt.debug:
-        # We keep a copy of the current source code for each experiment
-        copy_src(path_from="./",
-                 path_to=os.path.join(opt.checkpoints_dir, opt.name))
-
     # We wrap training into a try/except clause such that the model is saved
     # when interrupting with Ctrl+C
     try:
