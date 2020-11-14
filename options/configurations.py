@@ -14,18 +14,18 @@ def get_config_guided(opt):
 
 
 def get_opt_config(opt, name):
-    if "128x128" in name and "_8x_" in name:
+    if "128x128" in name and "8x_" in name:
         opt.start_size = 16
         opt.crop_size, opt.load_size = 128, 128
         opt.dataset = "celeba"
         opt.add_noise = True
-    elif "256x256" in name and "_8x_" in name:
+    elif "256x256" in name and "8x_" in name:
         opt.start_size = 32
         opt.crop_size, opt.load_size = 256, 256
         opt.dataset = "celebamaskhq"
         opt.add_noise = True
         opt.max_fm_size = 256
-    elif "_32x_" in name:
+    elif "32x_" in name:
         opt.start_size = 16
         opt.crop_size, opt.load_size = 512, 512
         opt.dataset = "celebamaskhq"
