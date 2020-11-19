@@ -205,7 +205,6 @@ class SRModel(torch.nn.Module):
                     for b_sem in range(self.opt.batchSize):
                         current_semantics[b] = bak_input_semantics[(b_sem)]
                     fake_image, _, _ = self.generate_fake(input_semantics=current_semantics, image_downsized=image_lr)
-                    print(fake_image.shape)
                     fake_images.append(fake_image)
                 fake_out = torch.cat(fake_images, -1)
                 out = OrderedDict([("input_label", input_semantics),
@@ -237,8 +236,6 @@ class SRModel(torch.nn.Module):
                     for delta_step in np.linspace(-delta, delta, num=n):
                         encoded_style_in = encoded_style[b].clone().detach()
                         encoded_style_in[region_idx] = (encoded_style_in[region_idx] + delta_step).clamp(-1, 1)
-                        # print(torch.mean((encoded_style_in - encoded_style_mini[b])**2))
-                        # print(encoded_style_in[region_idx])
                         fake_image, _, _ = self.generate_fake(input_semantics=input_semantics[b].unsqueeze(0),
                                                                  image_downsized=image_lr[b].unsqueeze(0),
                                                                  encoded_style=encoded_style_in.unsqueeze(0))
@@ -274,10 +271,7 @@ class SRModel(torch.nn.Module):
                     fake_samples = list()
                     style_samples = list()
                     for delta_step in np.linspace(0, 1, num=n):
-                        print(delta_step)
                         encoded_style_in = (1 - delta_step) * encoded_style_from[b].clone().detach() + (delta_step * encoded_style_to[b].clone().detach())
-                        # print(torch.mean((encoded_style_in - encoded_style_mini[b])**2))
-                        # print(encoded_style_in[region_idx])
                         fake_image, _, _ = self.generate_fake(input_semantics=input_semantics[b].unsqueeze(0),
                                                                  image_downsized=image_lr[b].unsqueeze(0),
                                                                  encoded_style=encoded_style_in.unsqueeze(0))
@@ -397,11 +391,8 @@ class SRModel(torch.nn.Module):
                 for b in range(self.opt.batchSize):
                     fake_samples = list()
                     for semantics_b in range(self.opt.batchSize):
-                        # encoded_style_in = encoded_style_mini[b].clone().detach()
                         encoded_style_in = encoded_style_full[b].clone().detach()
                         encoded_style_in[region_idx] = (encoded_style_full[semantics_b, region_idx]).clamp(-1, 1)
-                        print((encoded_style_full[b].clone().detach() - encoded_style_in).abs().mean())
-                        # print(encoded_style_in[region_idx])
                         fake_image, _, _ = self.generate_fake(input_semantics=input_semantics[b].unsqueeze(0),
                                                                  image_downsized=image_lr[b].unsqueeze(0),
                                                                  encoded_style=encoded_style_in.unsqueeze(0))
@@ -436,7 +427,6 @@ class SRModel(torch.nn.Module):
                     for delta_step in np.linspace(0, 1, num=self.opt.n_interpolation):
                         encoded_style_in = style_a
                         encoded_style_in[region_idx] = ((1 - delta_step) * style_a[region_idx] + delta_step * semantics_b[region_idx]).clamp(-1, 1)
-                        # print(encoded_style_in[region_idx])
                         fake_image, _, _ = self.generate_fake(input_semantics=input_semantics[b].unsqueeze(0),
                                                                  image_downsized=image_lr[b].unsqueeze(0),
                                                                  encoded_style=encoded_style_in.unsqueeze(0))
@@ -474,7 +464,6 @@ class SRModel(torch.nn.Module):
             scale = networks.np.sqrt(eps)
             style_corrupted = (torch.rand_like(style) * 2 - 1) * scale * 1.4 + style
         delta = torch.nn.functional.mse_loss(style, style_corrupted)
-        print("delta", delta.data)
         return style_corrupted
 
     def create_optimizers(self, opt):

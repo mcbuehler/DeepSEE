@@ -131,22 +131,15 @@ class BaseOptions():
         parser.add_argument('--guiding_style_image2', action='store_true',
                             help="Use a full image, but another image from the same person")
         parser.add_argument('--random_style_matrix', action='store_true',
-                            help="Create a random style matrix from N(0,1)")
+                            help="Create a random style matrix")
         parser.add_argument('--gpu_info', action='store_true',
                             help="print gpu info")
         parser.add_argument('--model_parallel_mode', type=int, default=0,
                             help="1 for 512x512 deepsee_models")
-        parser.add_argument('--ablation', type=str, default="",
-                            help="nospadenostyle")
 
         # for instance-wise features
         parser.add_argument('--nef', type=int, default=32,
                             help='# of encoder filters in the first conv layer')
-        # Google Sheets related
-        parser.add_argument('--gsheet_secrets_json_file', type=str, help='')
-        parser.add_argument('--gsheet_workbook_key', type=str,
-                            default='1byolOn6WRst4lBiQzHQV66f4oluEESur6D7q8nPLEio')
-
         self.initialized = True
         return parser
 
@@ -228,7 +221,6 @@ class BaseOptions():
         return new_opt
 
     def parse(self, save=False):
-
         opt = self.gather_options()
         opt.isTrain = self.isTrain  # train or test
 

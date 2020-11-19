@@ -22,8 +22,6 @@ class TrainOptions(BaseOptions):
                             help='do not save intermediate training results to [opt.checkpoints_dir]/[opt.name]/web/')
         parser.add_argument('--debug', action='store_true',
                             help='only do one epoch and displays at each iteration')
-        parser.add_argument('--tf_log', action='store_true',
-                            help='if specified, use tensorboard logging. Requires tensorflow installed')
 
         # for training
         parser.add_argument('--continue_train', action='store_true',

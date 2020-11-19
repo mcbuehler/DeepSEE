@@ -7,6 +7,7 @@ import cv2
 import imageio
 import numpy as np
 import scipy.misc
+from PIL import Image
 
 
 def get_image(image_path, input_height, input_width, resize_height=64,
@@ -99,3 +100,14 @@ def transform(image, input_height, input_width, resize_height=64,
 
 def inverse_transform(images):
     return (images + 1.) / 2.
+
+
+def tensor2images(t):
+    assert len(t.shape) == 4, "Please provide tensor in shape (batch_size, 3, H, W)"
+    assert t.shape[1] == 3, "Please provide RGB"
+    np_data = t.detach().cpu().numpy()
+    np_data = (np_data + 1) * 127.5
+    np_data = np_data.transpose(0,2,3,1)
+    np_data = np_data.astype(np.uint8)
+    images = [Image.fromarray(np_data[i]) for i in range(np_data.shape[0])]
+    return images

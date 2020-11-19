@@ -25,7 +25,6 @@ class DeepSEESR(BaseNetwork):
         nf = opt.ngf
         self.start_size = opt.start_size
         self.n_blocks = int(np.log2(opt.crop_size) - np.log2(self.start_size))
-        print("using {} blocks...".format(self.n_blocks))
 
         self.sw, self.sh = self.compute_latent_vector_size(opt)
 

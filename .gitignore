@@ -15,3 +15,5 @@ times-new-roman
 pytorch_checkpoint
 zipper
 unit_test
+.ipynb_checkpoints
+demo_data

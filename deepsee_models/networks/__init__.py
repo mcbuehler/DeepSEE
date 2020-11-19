@@ -36,7 +36,6 @@ def modify_commandline_options(parser, is_train):
 
 def create_network(cls, opt):
     net = cls(opt)
-    net.print_network()
     if len(opt.gpu_ids) > 0:
         assert(torch.cuda.is_available())
         net.cuda()
@@ -56,12 +55,4 @@ def define_E(opt):
 
 def define_SR(opt):
     net = find_network_using_name('deepsee', 'sr')
-
-    if opt.ablation == "nospadenostyle":
-        print("Using NoSpadeNoStyle model")
-        net = find_network_using_name('nospadenostyle', 'ablation')
-    elif opt.ablation == "nostyle":
-        net = find_network_using_name('nostyle', 'ablation')
-    elif opt.ablation == "nospade":
-        net = find_network_using_name('puresean', 'ablation')
     return create_network(net, opt)
