@@ -398,6 +398,11 @@ def get_celebA_region_index(names):
     return index
 
 
+def display_regions():
+    for region_id in range(19):
+        print("{:2d}: {}".format(region_id, get_celebA_region_name(region_id)))
+
+
 def print_gpu_memory():
     import subprocess
     sp = subprocess.Popen(['nvidia-smi', '-q'], stdout=subprocess.PIPE,
