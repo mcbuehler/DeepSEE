@@ -12,6 +12,8 @@ This is the official repository of this paper:
 > **Abstract:** *Super-resolution (SR) is by definition ill-posed. There are infinitely many plausible high-resolution variants for a given low-resolution natural image. Most of the current literature aims at a single deterministic solution of either high reconstruction fidelity or photo-realistic perceptual quality. In this work, we propose an explorative facial super-resolution framework, DeepSEE, for Deep disentangled Semantic Explorative Extreme super-resolution. To the best of our knowledge, DeepSEE is the first method to leverage semantic maps for explorative super-resolution. In particular, it provides control of the semantic regions, their disentangled appearance and it allows a broad range of image manipulations. We validate DeepSEE on faces, for up to 32x magnification and exploration of the space of super-resolution.*
 
 ## Updates
+*25. Nov 2020*: Updated [Demo notebook](Demo.ipynb). You can now run our demo in [Google Colab](https://colab.research.google.com/). 
+
 *19. Nov 2020*: [Demo notebook](Demo.ipynb) and checkpoints released. 
 
 *8. June 2020*: Training code released. 
@@ -21,8 +23,6 @@ This is the official repository of this paper:
 ```bash
 git clone https://github.com/mcbuehler/DeepSEE
 cd DeepSEE/
-conda install --file requirements.txt
-# Not all packages might be available in conda. Install them via pip:
 pip install -r requirements.txt
 ```
 
