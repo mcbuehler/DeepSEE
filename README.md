@@ -92,7 +92,7 @@ Then, run
 For the <i>guided</i> model, you also need the identity annotations. You can download these in the same Google Drive under "CelebA" -> "Anno" -> "identity_CelebA.txt".
 2. **Obtain the semantic masks** predicted from downscaled images. You have two options:
 a) Download from [here](https://deepseeresources.s3.us-east-2.amazonaws.com/CelebA.zip) or b) predict them yourself. 
-3. **Create dataset splits**: On the [author's website](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), follow the link `Train/Val/Test Partitions` and download the file with dataset partitions `CelebA_list_eval_partition.txt`. It is located in the `Eval` folder. Update the paths in `data/celeba_split.py` and run `python data/celeba_split.py`.
+3. **Create dataset splits**: On the [author's website](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), follow the link `Train/Val/Test Partitions` and download the file with dataset partitions `CelebA_list_eval_partition.txt`. It is located in the `Eval` folder. Update the paths in `data/celeba_partition.py` and run `python data/celeba_partition.py`.
 
 ### Custom Dataset
 You need one folder containing the images and another folder with semantic masks. The filenames for the image name and label should be the same (ignoring extensions). For example, the image `0001.jpg` and the semantic mask `0001.png` would belong to the same sample. You can then copy and adapt one of the `*_dataset.py` classes to your new dataset. 
