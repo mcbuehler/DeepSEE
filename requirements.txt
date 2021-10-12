@@ -7,7 +7,7 @@ scikit-image>=0.15.0
 tqdm==4.40.0
 facenet-pytorch==2.1.1
 IPython==7.9.0
-opencv-python==4.1.1.26
+opencv-python==4.2.0.32
 GPUtil==1.4.0
 dominate==2.5.2
 jupyter==1.0.0
